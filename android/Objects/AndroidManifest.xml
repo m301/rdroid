@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="madsacsoft.maddev.rdroid"
+	android:versionCode="1"
+	android:versionName="01 (Beta)"
+	android:installLocation="internalOnly">
+	
+	<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14"/>
+	<supports-screens android:largeScreens="true" 
+	    android:normalScreens="true" 
+	    android:smallScreens="true" 
+	    android:anyDensity="true"/>
+	<permission android:name="madsacsoft.maddev.rdroid.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+	<uses-permission android:name="android.permission.READ_CONTACTS"/>
+	<uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+	<uses-permission android:name="android.permission.NETWORK"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.permission.READ_SMS"/>
+	<uses-permission android:name="android.permission.WRITE_SMS"/>
+	<uses-permission android:name="android.permission.CALL_PHONE"/>
+	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
+	<uses-permission android:name="android.permission.SEND_SMS"/>
+	<uses-permission android:name="android.permission.REBOOT"/>
+	<uses-permission android:name="android.permission.DUMP"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.BATTERY_STATS"/>
+	<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+	<uses-permission android:name="android.permission.GET_TASKS"/>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.BLUETOOTH"/>
+	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.UPDATE_DEVICE_STATS"/>
+	<uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
+	<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<uses-permission android:name="android.permission.SET_WALLPAPER"/>
+	<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+	<uses-permission android:name="madsacsoft.maddev.rdroid.permission.C2D_MESSAGE"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+	<application
+		android:icon="@drawable/icon"
+		android:label="MAD rDroid">
+		<activity
+			android:windowSoftInputMode="stateHidden"
+			android:launchMode="singleTop"
+			android:name=".main"
+			android:label="MAD rDroid"
+			android:screenOrientation="portrait">
+			<intent-filter>
+			   <action android:name="android.intent.action.MAIN" />
+			   <category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			
+		</activity>
+		<service android:name=".submitter">
+		</service>
+		<receiver android:name=".submitter$submitter_BR">
+		</receiver>
+		<service android:name=".client">
+		</service>
+		<receiver
+			android:name=".client$client_BR"
+			android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+			<action android:name="android.intent.action.BOOT_COMPLETED"/>
+			</intent-filter>
+			<intent-filter>
+			<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+			<category android:name="madsacsoft.maddev.rdroid" />
+			</intent-filter>
+			<intent-filter>
+			<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+			<category android:name="madsacsoft.maddev.rdroid" />
+			</intent-filter>
+			<intent-filter>
+			<action android:name="android.provider.Telephony.SECRET_CODE" />
+			<data android:scheme="android_secret_code" android:host="737643" />
+			</intent-filter>
+		</receiver>
+	</application>
+</manifest>

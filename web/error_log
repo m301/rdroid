@@ -1,0 +1,28 @@
+[26-Nov-2013 07:01:14] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[26-Nov-2013 07:01:16] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[18-Dec-2013 15:46:11] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[18-Dec-2013 15:46:15] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[29-Jan-2014 14:06:05] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[23-Mar-2014 15:12:54] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[23-Mar-2014 15:15:27] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[23-Mar-2014 10:45:28] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/devices.php on line 5
+[23-Mar-2014 10:45:28] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/devices.php on line 5
+[23-Mar-2014 10:45:28] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'rdroid/functions.php' for inclusion (include_path='.:/home/mads8929/public_html/') in /home/madsac/public_html/rdroid/devices.php on line 5
+[23-Mar-2014 10:45:28] PHP Fatal error:  Call to undefined function cde() in /home/madsac/public_html/rdroid/devices.php on line 7
+[23-Mar-2014 10:45:55] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/devices.php on line 5
+[23-Mar-2014 10:45:55] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/devices.php on line 5
+[23-Mar-2014 10:45:55] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'rdroid/functions.php' for inclusion (include_path='.:/home/mads8929/public_html/') in /home/madsac/public_html/rdroid/devices.php on line 5
+[23-Mar-2014 10:45:55] PHP Fatal error:  Call to undefined function cde() in /home/madsac/public_html/rdroid/devices.php on line 7
+[23-Mar-2014 10:47:30] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/settings.php on line 4
+[23-Mar-2014 10:47:30] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/settings.php on line 4
+[23-Mar-2014 10:47:30] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'rdroid/functions.php' for inclusion (include_path='.:/home/mads8929/public_html/') in /home/madsac/public_html/rdroid/settings.php on line 4
+[23-Mar-2014 10:47:30] PHP Fatal error:  Call to undefined function cde() in /home/madsac/public_html/rdroid/settings.php on line 6
+[23-Mar-2014 10:47:38] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/settings.php on line 4
+[23-Mar-2014 10:47:38] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/settings.php on line 4
+[23-Mar-2014 10:47:38] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'rdroid/functions.php' for inclusion (include_path='.:/home/mads8929/public_html/') in /home/madsac/public_html/rdroid/settings.php on line 4
+[23-Mar-2014 10:47:38] PHP Fatal error:  Call to undefined function cde() in /home/madsac/public_html/rdroid/settings.php on line 6
+[25-Mar-2014 09:51:47] PHP Warning:  mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource in /home/madsac/public_html/rdroid/functions2.php on line 249
+[25-Mar-2014 05:21:49] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/devices.php on line 5
+[25-Mar-2014 05:21:49] PHP Warning:  include(rdroid/functions.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory in /home/madsac/public_html/rdroid/devices.php on line 5
+[25-Mar-2014 05:21:49] PHP Warning:  include() [<a href='function.include'>function.include</a>]: Failed opening 'rdroid/functions.php' for inclusion (include_path='.:/home/mads8929/public_html/') in /home/madsac/public_html/rdroid/devices.php on line 5
+[25-Mar-2014 05:21:49] PHP Fatal error:  Call to undefined function cde() in /home/madsac/public_html/rdroid/devices.php on line 7

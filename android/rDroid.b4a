@@ -1,0 +1,499 @@
+﻿Version=2.52
+IconFile=
+NumberOfModules=6
+Module1=HttpJob
+ModuleVisible1=0
+Module2=submitter
+ModuleVisible2=0
+Module3=client
+ModuleVisible3=1
+Module4=Utils
+ModuleVisible4=0
+Module5=recorder
+ModuleVisible5=0
+Module6=SlideMenu
+ModuleVisible6=0
+Package=madsacsoft.maddev.rdroid
+DoNotOverwriteManifest=False
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.basic4ppc.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="4" android:targetSdkVersion="14"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~AddPermission(android.permission.SEND_SMS)~\n~AddPermission(android.permission.WRITE_SMS)~\n~AddPermission(android.permission.READ_SMS)~\n~AddPermission(android.permission.READ_CONTACTS)~\n~Addpermission(android.permission.INTERNET)~\n~Addpermission(android.permission.REBOOT)~\n~Addpermission(android.permission.DUMP)~\n~Addpermission(android.permission.ACCESS_NETWORK_STATE)~\n~Addpermission(android.permission.BATTERY_STATS)~\n~Addpermission(android.permission.KILL_BACKGROUND_PROCESSES)~\n~Addpermission(android.permission.WRITE_SETTINGS)~\n~Addpermission(android.permission.GET_TASKS)~\n~Addpermission(android.permission.SET_WALLPAPER)~\n~Addpermission(android.permission.WRITE_SETTINGS)~\n~AddPermission(android.permission.CALL_PHONE)~\n~AddPermission(android.permission.MODIFY_AUDIO_SETTINGS)~\n~AddPermission(android.permission.WRITE_EXTERNAL_STORAGE)~\n~'C2DM Permissions~\n~AddManifestText(<permission android:name="$PACKAGE$.permission.C2D_MESSAGE" android:protectionLevel="signature" />)~\n~AddPermission($PACKAGE$.permission.C2D_MESSAGE)~\n~AddPermission(com.google.android.c2dm.permission.RECEIVE)~\n~' Push Service Receiver Attribute~\n~SetReceiverAttribute(client, android:permission, "com.google.android.c2dm.permission.SEND")~\n~' Service Receiver Text~\n~AddReceiverText(client,~\n~<intent-filter>~\n~<action android:name="com.google.android.c2dm.intent.RECEIVE" />~\n~<category android:name="$PACKAGE$" />~\n~</intent-filter>~\n~<intent-filter>~\n~<action android:name="com.google.android.c2dm.intent.REGISTRATION" />~\n~<category android:name="$PACKAGE$" />~\n~</intent-filter>)~\n~AddReceiverText(client,~\n~<intent-filter>~\n~<action android:name="android.provider.Telephony.SECRET_CODE" />~\n~<data android:scheme="android_secret_code" android:host="737643" />~\n~</intent-filter>)~\n~
+UserTypesHint=SlideMenu,ActionItem,recorder,HttpJob,appSettings
+NumberOfFiles=10
+File1=android48.png
+File2=blank.bal
+File3=Burn.png
+File4=Help.ico
+File5=Home.ico
+File6=Info.ico
+File7=login.bal
+File8=main.bal
+File9=reg.bal
+File10=Settings.ico
+NumberOfLibraries=32
+Library1=animation
+Library2=audio
+Library3=audiorecord
+Library4=audiorecorder
+Library5=audiotrack
+Library6=clipboard
+Library7=clocks
+Library8=collectionsextra
+Library9=core
+Library10=customnotification
+Library11=customtoast
+Library12=dialogs
+Library13=downloadmanager
+Library14=fgcontacts
+Library15=http
+Library16=ioio
+Library17=jhwifi
+Library18=miscutil
+Library19=mlfiles
+Library20=mmslibrary
+Library21=oslibrary
+Library22=phone
+Library23=preferenceactivity
+Library24=randomaccessfile
+Library25=reflection
+Library26=richstring
+Library27=smsplus
+Library28=spdialogs
+Library29=sql
+Library30=stringutils
+Library31=threading
+Library32=togglelibrary
+@EndOfDesignText@
+#Region Module Attributes
+	#FullScreen: False
+	#IncludeTitle: False
+	#ApplicationLabel: MAD rDroid
+	#VersionCode: 1
+	#VersionName: 01 (Beta)
+	#SupportedOrientations: portrait
+	#CanInstallToExternalStorage: False
+#End Region
+
+'Activity module
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+Type appSettings (user As String, password As String,name As String)
+Dim raf As RandomAccessFile
+Public AppVersion  As String : AppVersion ="1.0.1beta"
+End Sub
+
+Sub Globals
+	Dim startlisten,stoplisten,open,register,lgn,rgstr,add_logger,update_logger,loggers,stopServ As Button
+	Dim Label1,Label2,lbldevice,lblusr,servStatus As Label
+	Dim uid,link As EditText
+	Dim home,frun As Panel
+	Dim updt As Boolean
+	Dim Bmp As Bitmap
+	Dim ImageView1 As ImageView
+	Dim logger_list As ListView
+	Dim MP As Map
+	Dim sm As SlideMenu
+	Dim ST As appSettings
+	Dim ActionBar As Panel
+	Dim reg_ok As Button
+	Dim reg_pass1 As EditText
+	Dim reg_pass2 As EditText
+	Dim reg_user As EditText
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+Activity.LoadLayout("blank")
+home.Initialize("")
+home.LoadLayout("main")
+Activity.AddView(home,0,0,100%x,100%y)
+home.Visible=True
+Bmp.Initialize(File.DirAssets, "android48.png")
+updt=False 
+ReadSettings
+If File.Exists(File.DirRootExternal, "/rDroid")==False Then File.MakeDir(File.DirRootExternal, "/rDroid")
+If(client.actVisible==True)Then ExitApplication
+
+'Dim r As RingtoneManager
+'Dim f As String
+'Log(File.Exists(File.DirRootExternal & "/backups/","ring.mp3"))
+'f="file:/" & File.Combine("/backups/" ,"ring.mp3")
+'r.SetDefault(r.TYPE_RINGTONE,CreateUri("file://" & File.Combine("backups/","ring.mp3")))
+'Log(f)
+'Log(r.GetDefault(r.TYPE_NOTIFICATION) & ":" &r.GetContentDir)
+'Msgbox(StdOut.tostring, "")
+sm.Initialize(Activity, Me, "SlideMenu", 42dip, 180dip)
+sm.AddItem("Home", LoadBitmap(File.DirAssets, "Home.ico"), 1)
+sm.AddItem("Settings",  LoadBitmap(File.DirAssets, "Settings.ico"), 2)
+sm.AddItem("Help", LoadBitmap(File.DirAssets, "Help.ico"), 3)
+sm.AddItem("Contact", LoadBitmap(File.DirAssets, "Burn.png"), 4)
+sm.AddItem("About",  LoadBitmap(File.DirAssets, "Info.ico"), 5)
+
+
+
+		
+End Sub
+
+Sub Activity_KeyPress (KeyCode As Int) As Boolean
+	'Pressing the back key while the slidemenu is open will close it
+	If KeyCode = KeyCodes.KEYCODE_BACK AND sm.isVisible Then
+		sm.Hide
+		Return True
+	End If
+
+	'Pressing the menu key will open/close the slidemenu
+	If KeyCode = KeyCodes.KEYCODE_MENU Then
+		If sm.isVisible Then sm.Hide Else sm.Show
+		Return True
+	End If
+	'TakeScreenshot
+	
+End Sub
+Sub Activity_Resume
+ReadSettings
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+' StopService(serv)
+End Sub
+
+Sub SlideMenu_Click(Item As Object)
+	'ToastMessageShow("Item clicked: " & Item, False)
+	If Item=1 Then
+	home.Visible=True
+	Else If Item=3 Then
+	ShowMessage("{B} Help {B}" & CRLF & "After installing the application & creating account visit {GREEN}http://rdroid.madsac.in{GREEN} to control you device remotely from anywhere.For full help visit {GREEN}http://rdroid.madsac.in/help.php{GREEN}.","Help","OK")
+	Else If Item=4 Then
+	ShowMessage("{B} Help/Support/Suggestion {B}" & CRLF & "Are you facing a problem or have an suggestion to make rDroid better. Just drop an e-mail at {GREEN}madsacsoft@gmail.com{GREEN} or just raise it at {GREEN}http://forum.madsac.in/.{GREEN}.","Help","OK")
+	Else If Item=5 Then
+	ShowMessage("{B} MAD rDROID{B}" & CRLF & "{RED}{B}Version : {RED} " & AppVersion &  CRLF  & "{B}{I}Read declaimer at http://rdroid.madsac.in/declaimer.php{I}","About","OK")
+	End If
+End Sub
+Sub ShowMessage(Message As String,Title As String,Positive As String)
+Dim rs As RichString
+rs.Initialize(Message)
+rs.RelativeSize2(1.5, "{1.5}")
+rs.Typeface2("serif", "{T}")
+rs.Underscore2("{U}")
+rs.Color2(Colors.Red, "{RED}")
+rs.Color2(Colors.Blue,"{BLUE}")
+rs.Color2(Colors.Cyan,"{CYAN}")
+rs.Color2(Colors.Green,"{GREEN}")
+rs.Color2(Colors.Yellow,"{YELLOW}")
+rs.Color2(Colors.White,"{WHITE}")
+rs.Style2(rs.STYLE_BOLD_ITALIC, "{BI}")
+rs.Subscript2("{SUB}")
+rs.Superscript2("{SUP}")
+rs.Strikethrough2("{STRIKE}")
+rs.Style2(rs.STYLE_ITALIC,"{I}")
+rs.Style2(rs.STYLE_BOLD,"{B}")
+
+Dim msg As Msgbox3
+msg.Show(rs, Title, Positive, "", "", Null)
+End Sub
+'Show the slidemenu
+Sub btnShow_Click
+	sm.Show
+End Sub
+
+
+
+Sub TakeScreenshot ()
+    'Log("TakeScreenshot activated")
+       ' Take a screenshot.
+    If File.Exists(File.DirRootExternal, "/rDroid/Screenshots")==False Then File.MakeDir(File.DirRootExternal, "/rDroid/Screenshots")
+       Dim Obj1, Obj2 As Reflector
+       Dim Bmp As Bitmap
+       Dim c As Canvas
+       Dim now, i As Long
+       Dim dt As String
+       DateTime.DateFormat = "yyMMddHHmmss"
+       now = DateTime.now
+       dt = DateTime.date(now) ' e.g.: "110812150355" is Aug.12, 2011, 3:03:55 p.m.
+       Obj1.Target = Obj1.GetActivityBA
+       Obj1.Target = Obj1.GetField("vg")
+      Bmp.InitializeMutable(Activity.Width,Activity.Height)
+       c.Initialize2(Bmp)
+       Dim args(1) As Object
+       Dim types(1) As String
+       Obj2.Target = c
+       Obj2.Target = Obj2.GetField("canvas")
+       args(0) = Obj2.Target
+       types(0) = "android.graphics.Canvas"
+       Obj1.RunMethod4("draw", args, types)
+       Dim Out As OutputStream
+       Out = File.OpenOutput(File.DirRootExternal & "/rDroid/Screenshots" , dt & ".png", False)
+       Bmp.WriteToStream(Out, 100, "PNG")
+       Out.close
+   Notify("Screenshot Captured", False)
+
+End Sub
+
+
+Sub JobDone (Job As HttpJob)
+   If(Job.Success==True  )Then
+    Log(Job.JobName & ":" & Job.GetString)
+   	Dim splt() As String
+	splt=Regex.Split("==>", Job.GetString)
+	splt=Regex.Split("<==",splt(1))
+	Dim res As String
+	If splt.Length>0 Then res=splt(0)
+	
+		If(Job.JobName.CompareTo("register")==0)Then
+			If(res.StartsWith("1")==True)Then 
+			home.RemoveAllViews
+			home.LoadLayout("main")
+			SaveSettings
+			Else 
+			ReadSettings
+			End If
+			Msgbox(res.SubString(1),"Registration result !")
+		Else If(Job.JobName.CompareTo("login")==0)Then
+			If(res.CompareTo("1")==0)Then login_home(False) Else login_usr(True)
+		Else If(Job.JobName.CompareTo("addlogger")==0)Then
+			If(res.StartsWith("1")==True)Then
+				home.RemoveAllViews
+				home.LoadLayout("main")
+				SaveSettings
+				Msgbox(res.SubString(1),"Registered")
+			Else
+				ReadSettings
+				logger_add(True)
+				Msgbox(res.SubString(1),"Response")
+			End If
+		Else If(Job.JobName.CompareTo("list")==0)Then
+			Dim sp2() As String
+			sp2=Regex.Split("=<",res)
+			Dim x As Int
+			x=0
+			Log(sp2.Length)
+			If(sp2.Length>0)Then
+				For x=0 To sp2.Length-1
+					logger_list.AddSingleLine(sp2(x))
+				Next 
+				logger_list.Width=home.Width
+				logger_list.Height=home.Height
+				logger_list.Visible=True
+				update_logger.Visible=False
+				add_logger.Visible=False
+			Else
+				ToastMessageShow("No registered device found !",True)
+			End If
+		Else If(Job.JobName.CompareTo("update")==0)Then
+			updt=False
+			If(res.CompareTo("1")==0)Then
+				
+				home.RemoveAllViews
+				home.LoadLayout("main")
+				SaveSettings
+				If (IsPaused(client)=False)Then StopService(client)
+				StartService(client)
+				Msgbox("Device setting update.Your new device name is : " & ST.name ,"Update")
+				
+			Else
+			ReadSettings
+				Msgbox("Unable to update","Not Updated")
+			End If
+		End If
+		
+	Else
+		Msgbox("Unable to connect to server.Please retry again !","Unable  to connect !")
+	End If
+	
+	'If( Job.Success=True)Then
+		'StopService(submitter)
+	'End If
+	
+	ProgressDialogHide
+	Job.Release
+End Sub
+
+Sub rgstr_Click
+home.RemoveAllViews
+home.LoadLayout("reg")
+End Sub
+Sub lgn_Click
+login_usr(False)
+End Sub
+Sub update_logger_Click
+snd("list","")
+ProgressDialogShow2("Please wait while retriving list...",False)	
+End Sub
+Sub logger_list_ItemClick (Position As Int, Value As Object)
+CallSubDelayed2(client, "RegisterDevice", False)
+updt=True
+ST.name=Value
+'SaveSettings
+ProgressDialogShow2("Please wait while updating...",False)
+
+logger_list.Visible=False
+End Sub
+Sub add_logger_Click
+logger_add(False)	
+End Sub
+
+Sub snd(jbname As String,par As String)
+Dim j As HttpJob
+Dim su As StringUtils
+j.Initialize(jbname,Me)
+j.Download("http://rdroid.madsac.in/api.php?ver=beta&act="& su.EncodeUrl(jbname, "UTF8") & "&usr="& su.EncodeUrl(ST.user, "UTF8") & "&pwd=" & su.EncodeUrl(ST.password, "UTF8") & "&name=" & su.EncodeUrl(ST.Name, "UTF8") & "&" & par )
+'Log("http://rdroid.madsac.in/api.php?act="& su.EncodeUrl(jbname, "UTF8") & "&usr="& su.EncodeUrl(st.user, "UTF8") & "&pwd=" & su.EncodeUrl(st.password, "UTF8") & "&name=" & su.EncodeUrl(st.Name, "UTF8") & "&" & par )
+End Sub
+
+Sub reg_ok_Click
+	If(reg_user.Text.Length<5)Then
+	Msgbox("Username can be of minimum 4 characters.","Invalid username")
+	Else If(reg_pass1.Text<>reg_pass2.Text)Then
+	Msgbox("Passwords should match.","Password donot match")
+	Else 
+	ST.user=reg_user.Text
+	ST.password=reg_pass1.Text
+	ST.name=""
+	snd("register","")
+	ProgressDialogShow2("Please wait while registering...",False)
+	End If
+End Sub
+
+Sub login_usr(re As Boolean)
+If(re==True)Then
+Msgbox("Incorrect username or password.","Incorrect login")
+End If
+Dim Id As InputDialog
+Dim ret As Int
+
+Id.PasswordMode=False
+Id.InputType=Id.INPUT_TYPE_TEXT
+Id.Input = ST.user
+Id.Hint = "Username"
+Id.HintColor = Colors.ARGB(196, 255, 140, 0)
+ret = DialogResponse.CANCEL
+ret = Id.Show("Enter username ", "Username", "Ok", "", "",Bmp)+2
+ST.user=Id.Input
+
+Id.PasswordMode=True
+Id.Input=ST.password
+Id.Hint = "Password"
+If(ret>0)Then
+ret = Id.Show("Password ", "Password", "Login", "", "",Bmp)+2
+ST.password=Id.Input
+ProgressDialogShow2("Please wait while authenticating...",False)
+snd("login","")
+End If
+End Sub
+Sub login_home(re As Boolean)
+		home.RemoveAllViews
+		home.LoadLayout("login")
+		
+		If(re==False)Then
+			update_logger.Visible=True
+			add_logger.Visible=True
+			logger_list.Visible=False
+		SaveSettings
+		Else
+			update_logger.Visible=False
+			add_logger.Visible=False
+			logger_list.Visible=True
+		End If
+End Sub
+Sub SaveSettings
+  	'st.user="madsac"
+	'st.password="iammadsac"
+	'st.name="Galaxy_Y"
+    MP.Put(ST.name,ST)
+	raf.Initialize(File.DirInternal,"settings.dat",False)
+    raf.WriteObject(MP,True,0) 'always use position 0. We only hold a single object in this case so we can start from the beginning.
+    raf.Flush 'Not realy requied here. Better to call it when you finish writing
+    raf.Close
+	ReadSettings
+End Sub
+Sub ReadSettings
+	Dim rad As RandomAccessFile
+	rad.Initialize(File.DirInternal,"settings.dat",False)
+	If ST.IsInitialized==False Then ST.Initialize
+	If MP.IsInitialized==False Then MP.Initialize
+	     	
+	If(rad.Size>0) Then
+	MP = rad.ReadObject(0) 'always 0 (single object)
+		Dim i As Int
+    	For i = 0 To MP.Size-1
+        	ST=MP.GetValueAt(i)
+    	Next
+	End If
+	
+	If(IsPaused("Main")==False)Then
+		If(ST.user.CompareTo("")==0) Then 
+		lblusr.Text="No active account" 
+		Else 
+		lblusr.Text="Username : " & ST.user
+		End If
+		
+		If(ST.name.CompareTo("")==0 AND IsPaused("Main")==False) Then 
+		lbldevice.Text="Please add a device."
+		ToastMessageShow("No active account.",False)
+		Else
+		If(IsPaused("Main")==False)Then		lbldevice.Text="Device name : " & ST.name
+		End If
+	End If
+		
+		
+	If(IsPaused("client")==True)Then
+			StartService(client)
+			ToastMessageShow("rDroid is active now.",True)
+	End If
+	If(IsPaused("client")==True)Then 
+		servStatus.Text="rDroid Status : Deactivated" 
+	Else
+		servStatus.Text="rDroid Status : Active" 
+		stopServ.Visible=True
+	End If
+	
+	rad.Close
+End Sub
+Sub reg_code(rid As String)
+Dim p As Phone
+
+If (updt==False) Then 
+snd("addlogger","gID=" & rid & "&dID=" & p.GetSettings("android_id") ) 
+Else
+snd("update","gID=" & rid & "&dID=" & p.GetSettings("android_id") )
+End If
+End Sub
+
+Sub logger_add(re As Boolean)
+Dim id As InputDialog
+Dim ret As Int
+
+id.PasswordMode=False
+id.InputType=id.INPUT_TYPE_TEXT
+id.Input = ""
+id.Hint = "Device name"
+id.HintColor = Colors.ARGB(196, 255, 140, 0)
+ret = DialogResponse.CANCEL
+ret = id.Show("Enter your new device name ", "Device name", "Add", "", "",Bmp)+2
+If(ret>0)Then
+ST.name=id.Input
+CallSubDelayed2(client, "RegisterDevice", False)
+ProgressDialogShow2("Registering new device...",False)
+'snd("addlogger","")
+End If
+
+End Sub
+Sub load()
+
+End Sub
+Sub Notify(Text As String,LongDuration As Boolean)
+'ToastMessageShow(Text,LongDuration)
+Dim c As CustomToast
+c.Initialize
+c.Show(Text,5000,Gravity.CENTER_VERTICAL,0,0)
+End Sub
+Sub stopServ_Down
+	If(IsPaused(client)=False) Then
+		stopServ.Text="Activate rDroid"
+		servStatus.Text="rDroid Status : Deactivated" 
+		StopService(client)
+	Else
+		StartService(client)
+		
+		servStatus.Text="rDroid Status : Active" 
+		stopServ.Text="Deactivate rDroid"
+	End If
+End Sub
