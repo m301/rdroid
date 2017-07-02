@@ -2,6 +2,11 @@
 
 Remotely manage your android phone AKA RAT !
 
+## History!
+I worked on this project during highschool, in year 2011-2012.
+Since, I wasn't familier with versioning systems, Hence, there is no past history of code.
+The code is written very badly, it lacks proper implementation of modularity but still at that time for me it was a sample of good code ;)
+
 
 ## Features 
 I tried to keep list small, it has almost all frequently needed actions.
@@ -46,13 +51,6 @@ Web : `PHP`, `MYSQL`, `HTML` :), `CSS`, `jQuery`, few css jquery based plugin/fr
 Android : Basic4Android (I was/am a big fan of Visual Basic 6.0, May release another project)
 
 
-
-
-## History & future !
-
-I was worked on this project during highschool,in 2011-2012.
-I wasn't familier with versioning systems, so there is no past history of code.
-The code is written very badly, it lacks proper implementation of modularity but still at that time for me it was a sample of good code ;)
 
 #### What next ?
 I dont have much time to rewrite code and didn't find reason to keep it with me :)
