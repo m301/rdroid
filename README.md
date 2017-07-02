@@ -5,7 +5,8 @@ Remotely manage your android phone AKA RAT !
 ## History!
 I worked on this project during highschool, in year 2011-2012.
 Since, I wasn't familier with versioning systems, Hence, there is no past history of code.
-The code is written very badly, it lacks proper implementation of modularity but still at that time for me it was a sample of good code ;)
+
+The code is written in pathetic manner, it lacks modularity, comments, test-cases, documentation, schema backup etc but another fact is during that period for me it was an example of good code ;)
 
 
 ## Features 
