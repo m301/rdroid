@@ -1,7 +1,6 @@
 rdroid
 ======
-
-Remotely manage your android phone.
+Remotely manage your android phone AKA RAT !
 
 
 Features 
@@ -47,50 +46,43 @@ I dont have much time to rewrite code and don't find reason to keep it with me :
 As this is old code, many logics can be changed because they are bad example of bad practise, but still code will work with tweaks & modification.
 
 
-Does it works ? No.   What ?
+Does it work out-of-box ? 
 =============================
-Yes this code doesn't works, You need to fix it to make it work.
+Yes this code doesn't works, You need to change domains, figure out the schema, get google gcm keys etc.
 
 
 I can see madsac.in in code.
 -------------------------------------------
-It was owned by me, I know it is bad practise, i should have used relative urls & path.
+It was owned by me, I know it is bad practise to hardcode a string, I should have used relative urls & path.
 
 
 It ever worked ?
 -----------------
-Yes, it was working in past, i used to show it to classmates ;)
+Yes, it was working in past.
+
 
 
 How it works ?
 ----------------
 Pretty easy,
-Communication between client was using google c2dm. 
-From webclient a notification was sent to device, as soon as notification was recieved data was uploaded to website.
-For bigger actions like create sms, actions were taken from php file, more like queue.
-Thats it.
+- Communication between client was using google c2dm. 
+- From webclient a notification was sent to device, as soon as notification was recieved data was uploaded to website.
+- For bigger actions like create sms, actions were taken from php file, more like queue.
+Thats it !
 
 
 What languages you used ?
 ==========================
-Web : PHP, MYSQL, HTML :), CSS, jQuery, few css jquery based plugin/framework like metroui, kendo, jstree etc.
+Web : `PHP`, `MYSQL`, `HTML` :), `CSS`, `jQuery`, few css jquery based plugin/framework like `metroui`, `kendo`, `jstree` etc.
 
 Android : Basic4Android (I was/am a big fan of Visual Basic 6.0, May release another project)
 
 
 Future plan ?
 ==============
-Currently i am working as freelancer, as i want to fund my other projects (robotics stuff) & study.
-I will not be getting much time to make major changes,but i will try to fix current version slowly.
-If i am able to generate enough revenue either from donation or from commercial license, i will start increasing time spent on this project.
-Moreover, if i get enough donation i will remove commerical license.
-
-By donation i means, donating for opensource license as you want to improve the project.
+It is unmaintained project, if people are interested - I might fix it to make it work.
 
 
-A quick note
-=============
-This is my first opensource project, If you think that changing license will benefit project & me or have anyother suggestion please contact me. 
 
 
 License
