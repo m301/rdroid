@@ -5,7 +5,7 @@ Remotely manage your android phone AKA RAT !
 
 Features 
 ==========================
-I tried to keep list small, it has nearly everything can be done easily, obviously not eveything.
+I tried to keep list small, it has almost all frequently needed actions.
 - Contacts sync - Create, Read, Delete, Delete all contacts ;)
 - Device information, everything
 - Volumes - media, call, notification - get/set
