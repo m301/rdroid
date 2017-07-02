@@ -1,10 +1,9 @@
-rdroid
-======
+## rdroid
+
 Remotely manage your android phone AKA RAT !
 
 
-Features 
-==========================
+## Features 
 I tried to keep list small, it has almost all frequently needed actions.
 - Contacts sync - Create, Read, Delete, Delete all contacts ;)
 - Device information, everything
@@ -32,61 +31,43 @@ I tried to keep list small, it has almost all frequently needed actions.
 - Shell command execute
 	
 
-
-History, Should matter you
-==========================
-I was worked on this project during highschool,in 2011-2012.
-I wasn't familier with versioning systems, so there is no past history of code.
-The code is written very badly, it lacks proper implementation of modularity but still at that time for me it was a sample of good code ;)
-
-
-What next ?
-===============
-I dont have much time to rewrite code and don't find reason to keep it with me :)
-As this is old code, many logics can be changed because they are bad example of bad practise, but still code will work with tweaks & modification.
-
-
-Does it work out-of-box ? 
-=============================
-Yes this code doesn't works, You need to change domains, figure out the schema, get google gcm keys etc.
-
-
-I can see madsac.in in code.
--------------------------------------------
-It was owned by me, I know it is bad practise to hardcode a string, I should have used relative urls & path.
-
-
-It ever worked ?
------------------
-Yes, it was working in past.
-
-
-
-How it works ?
-----------------
+## How it works ?
 Pretty easy,
-- Communication between client was using google c2dm. 
-- From webclient a notification was sent to device, as soon as notification was recieved data was uploaded to website.
-- For bigger actions like create sms, actions were taken from php file, more like queue.
+- Communication between android client and webclient is done using google c2dm. 
+- From webclient a notification is sent to device, as soon as notification is recieved data is uploaded to website using webapi.
+- For actions which required more data to be sent to device like create sms, actions were taken from php file, more like queue.
 Thats it !
 
 
-What languages you used ?
-==========================
+
+## How it's built ?
 Web : `PHP`, `MYSQL`, `HTML` :), `CSS`, `jQuery`, few css jquery based plugin/framework like `metroui`, `kendo`, `jstree` etc.
 
 Android : Basic4Android (I was/am a big fan of Visual Basic 6.0, May release another project)
 
 
-Future plan ?
-==============
+
+
+## History & future !
+
+I was worked on this project during highschool,in 2011-2012.
+I wasn't familier with versioning systems, so there is no past history of code.
+The code is written very badly, it lacks proper implementation of modularity but still at that time for me it was a sample of good code ;)
+
+#### What next ?
+I dont have much time to rewrite code and didn't find reason to keep it with me :)
+As this is old code, many logics can be improved as they are bad example of ill-programming practise, but still code will work with minor modification.
+
+#### Future plan ?
 It is unmaintained project, if people are interested - I might fix it to make it work.
 
 
+## Does it work out-of-box ? 
+No, this code doesn't works out of box, You need to change domains, figure out the schema, get google gcm keys etc.
 
 
-License
-==================================
+## License
+
 Code is released under dual license Apache 2.0/ Commerical.
 Contributors can be granted commercial license, for free.
 
