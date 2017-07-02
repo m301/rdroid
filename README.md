@@ -49,7 +49,7 @@ Thats it !
 ## How it's built ?
 Web : `PHP`, `MYSQL`, `HTML` :), `CSS`, `jQuery`, few css jquery based plugin/framework like `metroui`, `kendo`, `jstree` etc.
 
-Android : Basic4Android (I was/am a big fan of Visual Basic 6.0, May release another project)
+Android : Basic4Android (I was/am a big fan of Visual Basic 6.0, Some examples can be found in another repsitory like [github.com/m301/vb6arc](https://github.com/m301/vb6arc))
 
 
 
