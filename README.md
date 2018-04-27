@@ -1,3 +1,5 @@
+# This project is unmaintained as of now, but as I get time (In next few months, probably), It will be fixed to work.
+
 ## rdroid
 
 Remotely manage your android phone AKA RAT !
